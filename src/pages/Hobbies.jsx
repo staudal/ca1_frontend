@@ -48,8 +48,24 @@ function Hobbies() {
 
     return (
         <Container>
-            <h1 className={"text-center mb-5 mt-5"}>All hobbies</h1>
-            <Table striped bordered hover>
+            <Form onSubmit={addHobbyHandler} className="mt-4">
+                <div className="row">
+                    <div className="col-5">
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Hobby name" />
+                        </Form.Group>
+                    </div>
+                    <div className="col-5">
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Hobby description" />
+                        </Form.Group>
+                    </div>
+                    <div className="col-2 d-flex">
+                        <Button variant="primary" type="submit" className="w-100">Add</Button>
+                    </div>
+                </div>
+            </Form>
+            <Table striped bordered hover className="mt-4 mb-4">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -73,23 +89,6 @@ function Hobbies() {
                 ))}
                 </tbody>
             </Table>
-            <Form onSubmit={addHobbyHandler}>
-                <div className="row">
-                    <div className="col-5">
-                        <Form.Group>
-                            <Form.Control type="text" placeholder="Hobby name" />
-                        </Form.Group>
-                    </div>
-                    <div className="col-5">
-                        <Form.Group>
-                            <Form.Control type="text" placeholder="Hobby description" />
-                        </Form.Group>
-                    </div>
-                    <div className="col-2 d-flex">
-                        <Button variant="primary" type="submit" className="w-100">Submit</Button>
-                    </div>
-                </div>
-            </Form>
         </Container>
     )
 }

@@ -8,12 +8,11 @@ const Layout = () => {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">Hobbit</Navbar.Brand>
+                    <Navbar.Brand href="/">Hobbit</Navbar.Brand>
                     <Nav className="me-0">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/about">About</Nav.Link>
-                        <Nav.Link href="/users">Users</Nav.Link>
+                        <Nav.Link href="/">Search</Nav.Link>
                         <Nav.Link href="/hobbies">Hobbies</Nav.Link>
+                        <Nav.Link href="/users">Users</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

@@ -31,7 +31,7 @@ function Home() {
 
     const personsExist = () => {
         return (
-            <Table striped bordered hover className="mt-4">
+            <Table striped bordered hover className="mt-4 mb-4">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -77,7 +77,7 @@ function Home() {
         <Container>
             <Form  onSubmit={searchHandler}>
                 <Form.Group className="d-flex gap-4 mt-4">
-                    <Form.Control type="text" placeholder="Search for friends by hobby"/>
+                    <Form.Control type="text" placeholder="Search (no input = all)"/>
                     <Button type="submit">Search</Button>
                 </Form.Group>
             </Form>
