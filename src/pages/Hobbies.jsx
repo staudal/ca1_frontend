@@ -15,18 +15,35 @@ function Hobbies() {
     }, [])
 
     function addHobbyHandler(event) {
+        event.preventDefault();
+        const hobby = {
+            name: event.target[0].value,
+            description: event.target[1].value
+        }
         fetch('http://localhost:8080/api/hobby/add', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                name: "test",
-                description: "test"
+            body: JSON.stringify(hobby)
+        })
+            .then(response => response.json())
+            .then(data => {
+                setHobbies([...hobbies, data])
             })
-        }).then(r => r.json())
+        event.target.reset();
+    }
+
+    function removeHobbyHandler(event, id) {
         event.preventDefault();
-        console.log("addHobbyHandler");
+        fetch('http://localhost:8080/api/hobby/delete/' + id, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                setHobbies(hobbies.filter(hobby => hobby.id !== data.id))
+            }
+        )
     }
 
     return (
@@ -38,6 +55,7 @@ function Hobbies() {
                     <th>#</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Operations</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,29 +64,31 @@ function Hobbies() {
                         <td>{hobby.id}</td>
                         <td>{hobby.name}</td>
                         <td>{hobby.description}</td>
+                        <td>
+                            <Form onSubmit={(event) => removeHobbyHandler(event, hobby.id)}>
+                                <Button variant="danger" type="submit">Delete</Button>
+                            </Form>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
             </Table>
             <Form onSubmit={addHobbyHandler}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div className="row">
+                    <div className="col-5">
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Hobby name" />
+                        </Form.Group>
+                    </div>
+                    <div className="col-5">
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Hobby description" />
+                        </Form.Group>
+                    </div>
+                    <div className="col-2 d-flex">
+                        <Button variant="primary" type="submit" className="w-100">Submit</Button>
+                    </div>
+                </div>
             </Form>
         </Container>
     )
