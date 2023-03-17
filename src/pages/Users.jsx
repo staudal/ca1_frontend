@@ -6,7 +6,7 @@ function Users() {
     const [persons, setPersons] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/person/all')
+        fetch('https://staudal.org/rest_start_code/api/person/all')
             .then(response => response.json())
             .then(data => setPersons(data))
     }, [])
@@ -18,7 +18,7 @@ function Users() {
             lastName: event.target[1].value,
             email: event.target[2].value,
         }
-        fetch('http://localhost:8080/api/person/add', {
+        fetch('https://staudal.org/rest_start_code/api/person/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

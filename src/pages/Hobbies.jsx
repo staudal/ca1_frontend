@@ -9,7 +9,7 @@ function Hobbies() {
     const [hobbies, setHobbies] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/hobby/all')
+        fetch('https://staudal.org/rest_start_code/api/hobby/all')
             .then(response => response.json())
             .then(data => setHobbies(data))
     }, [])
@@ -20,7 +20,7 @@ function Hobbies() {
             name: event.target[0].value,
             description: event.target[1].value
         }
-        fetch('http://localhost:8080/api/hobby/add', {
+        fetch('https://staudal.org/rest_start_code/api/hobby/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function Hobbies() {
 
     function removeHobbyHandler(event, id) {
         event.preventDefault();
-        fetch('http://localhost:8080/api/hobby/delete/' + id, {
+        fetch('https://staudal.org/rest_start_code/api/hobby/delete/' + id, {
             method: 'DELETE',
         })
             .then(response => response.json())

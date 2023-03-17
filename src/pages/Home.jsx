@@ -9,7 +9,7 @@ function Home() {
         event.preventDefault();
 
         if (event.target[0].value == '') {
-            fetch('http://localhost:8080/api/person/all')
+            fetch('https://staudal.org/rest_start_code/api/person/all')
                 .then(response => response.json())
                 .then(data => {
                     setPersons(data)
@@ -18,7 +18,7 @@ function Home() {
         }
         
         if (event.target[0].value != '') {
-            fetch('http://localhost:8080/api/person/hobby/' + event.target[0].value)
+            fetch('https://staudal.org/rest_start_code/api/person/hobby/' + event.target[0].value)
                 .then(response => response.json())
                 .then(data => {
                     setPersons(data)
